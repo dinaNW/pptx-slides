@@ -32,8 +32,10 @@ router.post('/generate-pptx', function (req, res) {
         { text:'Cell 1 B',  options:{fontFace:'Courier'} }
     ], { x:0.5, y:5, w:9, h:2, colW:[1.5,1.5,6] });
 
+    const filename = 'sample-presentation.pptx';
+
     // https://gitbrent.github.io/PptxGenJS/docs/usage-saving.html#nodejs
-    pptx.save('public/sample-presentation.pptx', function(filename) {
+    pptx.save('public/sample-presentation.pptx', function() {
         res.send({url: 'http://localhost:3000/' + filename})
     });
 
