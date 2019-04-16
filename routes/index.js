@@ -32,8 +32,12 @@ router.post('/generate-pptx', function (req, res) {
         { text:'Cell 1 B',  options:{fontFace:'Courier'} }
     ], { x:0.5, y:5, w:9, h:2, colW:[1.5,1.5,6] });
 
-    // Will return BufferArray. https://gitbrent.github.io/PptxGenJS/docs/usage-saving.html#nodejs
+    // https://gitbrent.github.io/PptxGenJS/docs/usage-saving.html#nodejs
     pptx.save('http', function(file) {
+        res.set({
+            'Content-Type': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            'Content-Description': 'attachment; filename=sample-presentation.pptx'
+        });
         res.send({pptx: file})
     });
 
