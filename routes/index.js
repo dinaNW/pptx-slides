@@ -14,7 +14,12 @@ router.post('/generate-pptx', function (req, res) {
 
     slide.addText('Hello World!', { x:1.5, y:1.5, fontSize:18, color:'363636' });
 
-    // slide.addImage({path: 'images/feedback.png'});
+    // The "https://d20v9nqgtkp2t3.cloudfront.net/safeImage?url=" part of each image url will have to be removed
+    // and decodeURIComponent() will have to be applied to the rest.
+    // Without this, the PPTX file is corrupted.
+    slide.addImage({
+        path: decodeURIComponent('https%3A%2F%2Flocaltvwjw.files.wordpress.com%2F2019%2F01%2Fwall.jpg%3Fquality%3D85%26strip%3Dall&width=150&height=150&d=rf-YtYmwWdrsEdQSJP3nRRSrN5t4kbiFniOR0SSYQWA'),
+    });
 
     slide.addChart(pptx.charts.BAR, [{
             name  : 'Actual Sales',
